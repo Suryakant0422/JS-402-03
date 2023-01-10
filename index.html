@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+</head>
+<body>
+  <h1>My shopping  List</h1>
+  <form id="to-do-form">
+    <input type="text" id="task-input"></input>
+    <button type="submit">Add Items</button>
+  </form>
+  <ul id="task-list"></ul>
+  <script>
+    const form = document.querySelector('#to-do-form');
+    const taskInput = document.querySelector('#task-input');
+    const taskList = document.querySelector('#task-list');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      // Get the task input value
+      const task = taskInput.value;
+      
+      // Add the task to the list
+      const li = document.createElement('li');
+      li.textContent = task;
+
+      // Add a delete button for the task
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.addEventListener('click', () => {
+        taskList.removeChild(li);
+      });
+      li.appendChild(deleteBtn);
+
+      taskList.appendChild(li);
+      
+      // Clear the input
+      taskInput.value = '';
+    });
+  </script>
+</body>
+</html>
